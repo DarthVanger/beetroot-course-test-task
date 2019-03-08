@@ -11,7 +11,7 @@ cart.onChange(syncWithCart)
 
 function syncWithCart() {
   setState({
-    productsCount: cart.items.length,
+    productsCount: cart.getItems().length,
     totalPrice: cart.getTotalPrice(),
   })
 }

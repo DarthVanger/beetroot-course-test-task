@@ -7,7 +7,7 @@ const cart = {
   add,
   remove,
   clear,
-  items,
+  getItems,
   getTotalPrice,
   onChange,
 }
@@ -28,9 +28,14 @@ function initAddProductBtn(product) {
   return cart
 }
 
+function getItems() {
+  return items
+}
+
+
 function add(product) {
   console.debug('Adding product: ', product);
-  cart.items.push(product)
+  items.push(product)
   handleChange(items)
   return cart
 }
