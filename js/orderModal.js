@@ -1,4 +1,4 @@
-import orderForm from './orderForm.js'
+import OrderForm from './orderForm.js'
 
 let element
 
@@ -22,14 +22,15 @@ function createElement() {
 function openModal() {
   createElement()
   document.body.append(element)
+  return element
 }
 
 function closeModal() {
   element.remove()
 }
 
-export default {
-  open: openModal,
-  close: closeModal,
-  onSubmitSuccess: orderForm.onSubmitSuccess,
+export default element
+export {
+  openModal,
+  closeModal,
 }

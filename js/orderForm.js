@@ -1,5 +1,3 @@
-let onSubmitSuccessHandler = () => {}
-
 const template = document.createElement('template');
 template.innerHTML = `
   <form novalidate>
@@ -16,7 +14,7 @@ template.innerHTML = `
   </form>
 `
 
-export class OrderForm extends HTMLElement {
+class OrderForm extends HTMLElement {
   constructor() {
     super()
     this.root = this.attachShadow({ mode: 'open' })
@@ -31,7 +29,9 @@ export class OrderForm extends HTMLElement {
     event.preventDefault()
     const { errorMessages, isValid } = this.validate()
     if (isValid) {
-      onSubmitSuccessHandler()
+      this.dispatchEvent(new CustomEvent('orderPlacementSuccess', {
+        bubbles: true,
+      }))
     } else {
       alert(`The form is invalid:\n${errorMessages.join('\n')}`) 
     }
@@ -54,10 +54,4 @@ export class OrderForm extends HTMLElement {
 
 customElements.define('order-form', OrderForm)
 
-function onSubmitSuccess(handler) {
-  onSubmitSuccessHandler = handler
-}
-
-export default {
-  onSubmitSuccess,
-}
+export default OrderForm

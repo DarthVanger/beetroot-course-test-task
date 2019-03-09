@@ -1,15 +1,17 @@
-import orderModal from './orderModal.js'
+import orderModal, { openModal, closeModal } from './orderModal.js'
 import cart from './cart.js'
 
 const orderBtn = document.querySelector('.btn-check')
 
-orderBtn.addEventListener('click', orderModal.open)
-
-orderModal.onSubmitSuccess(() => {
-  alert('Your order was submitted! Thank you for your purchase!')
-  orderModal.close()
-  cart.clear()
+orderBtn.addEventListener('click', () => {
+  const modal = openModal()
+  modal.addEventListener('orderPlacementSuccess', () => {
+    alert('Your order was submitted! Thank you for your purchase!')
+    closeModal()
+    cart.clear()
+  })
 })
+
 
 export default {
   orderBtn,
