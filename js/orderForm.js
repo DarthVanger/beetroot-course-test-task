@@ -1,4 +1,4 @@
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `
   <form novalidate>
     <h2 style="text-align: center">Place an order</h2>

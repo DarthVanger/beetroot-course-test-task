@@ -1,36 +1,39 @@
 import OrderForm from './orderForm.js'
 
-let element
+const template = document.createElement('template')
+template.innerHTML = `
+  <style>
+    .modal {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      zIndex: 100;
+      background-color: white;
+      width: 320px;
+      border-radius: 20px;
+      padding: 1em;
+    }
+  </style>
+  <div class="modal">
+    <order-form />
+  </div>
+`
 
-function createElement() {
-  element = document.createElement('div')
-  element.style.position = 'absolute'
-  element.style.top = '20px'
-  element.style.left = '0'
-  element.style.right = '0'
-  element.style.margin = 'auto'
-  element.style.zIndex = '100'
-  element.style.backgroundColor = 'white'
-  element.style.width = '320px'
-  element.style.minHeight = '320px'
-  element.style.borderRadius = '20px'
-  element.style.padding = '1em'
+class OrderModal extends HTMLElement {
+  constructor() {
+    super()
+    this.root = this.attachShadow({ mode: 'open' })
+    this.root.appendChild(template.content.cloneNode(true))
 
-  element.appendChild(document.createElement('order-form'))
+    const orderForm = this.root.querySelector('order-form')
+    orderForm.addEventListener('orderPlacementSuccess', () => {
+      this.dispatchEvent(new CustomEvent('orderPlacementSuccess'))
+    })
+  }
 }
 
-function openModal() {
-  createElement()
-  document.body.append(element)
-  return element
-}
+customElements.define('order-modal', OrderModal)
 
-function closeModal() {
-  element.remove()
-}
-
-export default element
-export {
-  openModal,
-  closeModal,
-}
+export default OrderModal
