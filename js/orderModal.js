@@ -1,31 +1,31 @@
 import orderForm from './orderForm.js'
 
-let modal
+let element
 
-function createModal() {
-  modal = document.createElement('div')
-  modal.style.position = 'absolute'
-  modal.style.top = '20px'
-  modal.style.left = '0'
-  modal.style.right = '0'
-  modal.style.margin = 'auto'
-  modal.style.zIndex = '100'
-  modal.style.backgroundColor = 'white'
-  modal.style.width = '320px'
-  modal.style.minHeight = '320px'
-  modal.style.borderRadius = '20px'
-  modal.style.padding = '1em'
+function createElement() {
+  element = document.createElement('div')
+  element.style.position = 'absolute'
+  element.style.top = '20px'
+  element.style.left = '0'
+  element.style.right = '0'
+  element.style.margin = 'auto'
+  element.style.zIndex = '100'
+  element.style.backgroundColor = 'white'
+  element.style.width = '320px'
+  element.style.minHeight = '320px'
+  element.style.borderRadius = '20px'
+  element.style.padding = '1em'
 
-  modal.appendChild(orderForm.createNode())
+  element.appendChild(orderForm.createElement())
 }
 
 function openModal() {
-  createModal()
-  document.body.append(modal)
+  createElement()
+  document.body.append(element)
 }
 
 function closeModal() {
-  modal.remove()
+  element.remove()
 }
 
 export default {

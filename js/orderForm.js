@@ -1,6 +1,7 @@
+let element
 let onSubmitSuccessHandler = () => {}
 
-function createNode() {
+function createElement() {
   const formTemplate  = `
     <form novalidate>
       <h2 style="text-align: center">Place an order</h2>
@@ -17,16 +18,16 @@ function createNode() {
   `
   const template = document.createElement('template')
   template.innerHTML = formTemplate.trim()
-  const node = template.content.firstChild
+  element = template.content.firstChild
 
-  onCreated(node)
-  return node
+  onCreated()
+  return element
 }
 
-function onCreated(form) {
-  form.addEventListener('submit', (event) => {
+function onCreated() {
+  element.addEventListener('submit', (event) => {
     event.preventDefault()
-    const { errorMessages, isValid } = validate(form)
+    const { errorMessages, isValid } = validate()
     if (isValid) {
       onSubmitSuccessHandler()
     } else {
@@ -35,9 +36,9 @@ function onCreated(form) {
   })
 }
 
-function validate(form) {
-  const name = form.querySelector('input[name="name"]').value
-  const email = form.querySelector('input[name="email"]').value
+function validate() {
+  const name = element.querySelector('input[name="name"]').value
+  const email = element.querySelector('input[name="email"]').value
   const errorMessages = []
   if (name.trim() === '') {
     errorMessages.push('Name field should not be empty')
@@ -54,6 +55,6 @@ function onSubmitSuccess(handler) {
 }
 
 export default {
-  createNode,
+  createElement,
   onSubmitSuccess,
 }
