@@ -1,5 +1,5 @@
-import OrderModal from './components/OrderModal.js'
-import cartStore from './cartStore.js'
+import OrderModal from './OrderModal.js'
+import cartStore from '../cartStore.js'
 
 const orderBtn = document.querySelector('.btn-check')
 
