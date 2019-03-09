@@ -1,17 +1,6 @@
-const form = createForm()
 let onSubmitSuccessHandler = () => {}
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault()
-  const { errorMessages, isValid } = validate(form)
-  if (isValid) {
-    onSubmitSuccessHandler()
-  } else {
-    alert(`The form is invalid:\n${errorMessages.join('\n')}`) 
-  }
-})
-
-function createForm() {
+function createNode() {
   const formTemplate  = `
     <form novalidate>
       <h2 style="text-align: center">Place an order</h2>
@@ -28,7 +17,22 @@ function createForm() {
   `
   const template = document.createElement('template')
   template.innerHTML = formTemplate.trim()
-  return template.content.firstChild
+  const node = template.content.firstChild
+
+  onCreated(node)
+  return node
+}
+
+function onCreated(form) {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const { errorMessages, isValid } = validate(form)
+    if (isValid) {
+      onSubmitSuccessHandler()
+    } else {
+      alert(`The form is invalid:\n${errorMessages.join('\n')}`) 
+    }
+  })
 }
 
 function validate(form) {
@@ -50,6 +54,6 @@ function onSubmitSuccess(handler) {
 }
 
 export default {
+  createNode,
   onSubmitSuccess,
-  node: form,
 }
