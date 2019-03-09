@@ -16,7 +16,7 @@ function createElement() {
   element.style.borderRadius = '20px'
   element.style.padding = '1em'
 
-  element.appendChild(orderForm.createElement())
+  element.appendChild(document.createElement('order-form'))
 }
 
 function openModal() {
