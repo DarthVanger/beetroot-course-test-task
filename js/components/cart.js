@@ -1,4 +1,4 @@
-import cart from './cart.js'
+import cartStore from '../cartStore.js'
 
 const container = document.querySelector('.top-cart')
 
@@ -7,12 +7,12 @@ const productsCountNode = document.querySelector('.top-cart-info__item > span:nt
 const totalPriceNode = document.querySelector('.top-cart-info__item > span:nth-child(2)')
 
 syncWithCart()
-cart.onChange(syncWithCart)
+cartStore.onChange(syncWithCart)
 
 function syncWithCart() {
   setState({
-    productsCount: cart.getItems().length,
-    totalPrice: cart.getTotalPrice(),
+    productsCount: cartStore.getItems().length,
+    totalPrice: cartStore.getTotalPrice(),
   })
 }
 

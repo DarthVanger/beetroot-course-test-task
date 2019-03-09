@@ -1,4 +1,4 @@
-import OrderForm from './orderForm.js'
+import OrderForm from './OrderForm.js'
 
 const template = document.createElement('template')
 template.innerHTML = `

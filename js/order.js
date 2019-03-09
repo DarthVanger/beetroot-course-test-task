@@ -1,5 +1,5 @@
-import OrderModal from './orderModal.js'
-import cart from './cart.js'
+import OrderModal from './components/OrderModal.js'
+import cartStore from './cartStore.js'
 
 const orderBtn = document.querySelector('.btn-check')
 
@@ -9,7 +9,7 @@ orderBtn.addEventListener('click', () => {
   modal.addEventListener('orderPlacementSuccess', () => {
     alert('Your order was submitted! Thank you for your purchase!')
     modal.remove()
-    cart.clear()
+    cartStore.clear()
   })
 })
 
