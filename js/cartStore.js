@@ -1,5 +1,3 @@
-import products from './products.js'
-
 let items = []
 let onChangeHandlers = [];
 
@@ -12,8 +10,6 @@ const cart = {
   onChange,
 }
 
-products.forEach(initAddProductBtn)
-
 function onChange(handler) {
   onChangeHandlers.push(handler);
 }
@@ -22,16 +18,9 @@ function handleChange(items) {
   onChangeHandlers.forEach(handler => handler(items));
 }
 
-
-function initAddProductBtn(product) {
-  product.component.addBtn.addEventListener('click', () => add(product))
-  return cart
-}
-
 function getItems() {
   return items
 }
-
 
 function add(product) {
   console.debug('Adding product: ', product);

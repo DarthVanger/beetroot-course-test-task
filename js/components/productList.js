@@ -1,3 +1,5 @@
+import cartStore from '../cartStore.js'
+
 const productsNodeList = document.querySelectorAll('.product-box__item')
 
 const productComponents = [...productsNodeList].map(node => ({
@@ -6,12 +8,18 @@ const productComponents = [...productsNodeList].map(node => ({
   price: node.querySelector('.product-box__meta > p:first-child'),
   qty: node.querySelector('.qty__item'),
   addBtn: node.querySelector('.product-box__btn'),
-}));
+}))
 
 const products = productComponents.map(component => ({
   component,
   title: component.title.innerText,
   price: parseInt(component.price.innerText),
-}));
+}))
+
+products.forEach((product) => {
+  product.component.addBtn.addEventListener('click', () => {
+    cartStore.add(product)
+  })
+})
 
 export default products
