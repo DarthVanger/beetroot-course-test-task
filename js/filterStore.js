@@ -21,7 +21,7 @@ function onChange(handler) {
   onChangeHandlers.push(handler)
 }
 
-function filter(products) {
+function applyFilter(products) {
   return products
     .filter(categoryFilter)
     .filter(priceFilter)
@@ -41,8 +41,12 @@ function priceFilter(product) {
   return product.price < state.price
 }
 
+export {
+  CATEGORY_FILTER_DISABLED_VALUE,
+  PRICE_FILTER_DISABLED_VALUE,
+}
 export default {
   set,
   onChange,
-  filter,
+  applyFilter,
 }
