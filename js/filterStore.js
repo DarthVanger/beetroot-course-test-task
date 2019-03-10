@@ -38,7 +38,7 @@ function priceFilter(product) {
   if (state.price === PRICE_FILTER_DISABLED_VALUE) {
     return true
   }
-  return product.price < state.price
+  return product.price <= state.price
 }
 
 export {
