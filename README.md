@@ -7,3 +7,11 @@ HTML and CSS were given as a starting point for the task.
 Task description is in [`JS_Test_Task_Beetrot_Academy.pdf`](https://github.com/DarthVanger/beetroot-course-test-task/blob/master/JS_Test_Task_Beetrot_Academy.pdf).
 
 Tested in `chromium-browser` Version 72.0.3626.121 (Official Build) Built on Ubuntu, running on Ubuntu 18.04 (64-bit).
+
+## Running locally
+Just launch a server to serve all the files as static resources.
+
+For example with [`http-server`](https://www.npmjs.com/package/http-server):
+```
+npx http-server .
+```
