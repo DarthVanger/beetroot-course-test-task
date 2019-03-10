@@ -1,8 +1,9 @@
 const FILTER_DISABLED_OPTION_NAME = 'Все'
+const PRICE_FILTER_DISABLED_VALUE = 0
 
 let state = {
   category: FILTER_DISABLED_OPTION_NAME,
-  price: FILTER_DISABLED_OPTION_NAME,
+  price: PRICE_FILTER_DISABLED_VALUE,
 }
 
 const onChangeHandlers = []
@@ -21,7 +22,9 @@ function onChange(handler) {
 }
 
 function filter(products) {
-  return products.filter(categoryFilter)
+  return products
+    .filter(categoryFilter)
+    .filter(priceFilter)
 }
 
 function categoryFilter(product) {
@@ -29,6 +32,13 @@ function categoryFilter(product) {
     return true
   }
   return product.category === state.category
+}
+
+function priceFilter(product) {
+  if (state.price === PRICE_FILTER_DISABLED_VALUE) {
+    return true
+  }
+  return product.price < state.price
 }
 
 export default {

@@ -12,7 +12,17 @@ categorySelect.addEventListener('change', () => {
     category: selectedOptionName,
   })
 
-  console.debug('Filter changed: selectedOptionName: ', selectedOptionName)
+  console.debug('Filter changed: category filter name: ', selectedOptionName)
+})
+
+priceSelect.addEventListener('change', () => {
+  const selectedOptionValue = parseInt(priceSelect.value)
+
+  filterStore.set({
+    price: selectedOptionValue
+  })
+
+  console.debug('Filter changed: price filter value: ', selectedOptionValue)
 })
 
 export default priceSelect
