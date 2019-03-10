@@ -1,8 +1,8 @@
-const FILTER_DISABLED_OPTION_NAME = 'Все'
+const CATEGORY_FILTER_DISABLED_VALUE = 'Все'
 const PRICE_FILTER_DISABLED_VALUE = 0
 
 let state = {
-  category: FILTER_DISABLED_OPTION_NAME,
+  category: CATEGORY_FILTER_DISABLED_VALUE,
   price: PRICE_FILTER_DISABLED_VALUE,
 }
 
@@ -28,7 +28,7 @@ function filter(products) {
 }
 
 function categoryFilter(product) {
-  if (state.category === FILTER_DISABLED_OPTION_NAME) {
+  if (state.category === CATEGORY_FILTER_DISABLED_VALUE) {
     return true
   }
   return product.category === state.category
