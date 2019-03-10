@@ -15,6 +15,10 @@ function onChange(handler) {
 }
 
 function handleChange(items) {
+  notifyObservers(items)
+}
+
+function notifyObservers(items) {
   onChangeHandlers.forEach(handler => handler(items));
 }
 

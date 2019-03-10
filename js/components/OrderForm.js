@@ -21,7 +21,6 @@ class OrderForm extends HTMLElement {
     this.root.appendChild(template.content.cloneNode(true))
 
     this.form = this.root.querySelector('form')
-
     this.form.addEventListener('submit', event => this.onSubmit(event))
   }
 
@@ -29,11 +28,10 @@ class OrderForm extends HTMLElement {
     event.preventDefault()
     const { errorMessages, isValid } = this.validate()
     if (isValid) {
-      this.dispatchEvent(new CustomEvent('orderPlacementSuccess', {
-        bubbles: true,
-      }))
+      this.dispatchEvent(new CustomEvent('orderPlacementSuccess'))
     } else {
       alert(`The form is invalid:\n${errorMessages.join('\n')}`) 
+      return false
     }
   }
 
