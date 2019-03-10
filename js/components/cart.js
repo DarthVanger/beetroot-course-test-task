@@ -9,7 +9,7 @@ cartStore.onChange(deriveStateFromCartStore)
 
 function deriveStateFromCartStore() {
   setState({
-    productsCount: cartStore.getItems().length,
+    productsCount: cartStore.getProductsCount(),
     totalPrice: cartStore.getTotalPrice(),
   })
 }

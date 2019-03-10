@@ -7,6 +7,7 @@ const cart = {
   clear,
   getItems,
   getTotalPrice,
+  getProductsCount,
   onChange,
 }
 
@@ -26,15 +27,46 @@ function getItems() {
   return items
 }
 
-function add(product) {
-  console.debug('Adding product to cart: ', product);
-  items.push(product)
+function add({ product, quantity }) {
+  if (!quantity) quantity = 1
+  console.debug(`Adding ${quantity} products to cart: `, product);
+
+  if (hasProduct(product)) {
+    setQuantity({ product, quantity })
+  } else {
+    addNewItem({ product, quantity })
+  }
+
+  return cart
+}
+
+function addNewItem({ product, quantity }) {
+  items.push({ product, quantity })
   handleChange(items)
   return cart
 }
 
 function getTotalPrice() {
-  return items.reduce((a, item) => a + item.price, 0)
+  return items.reduce((a, item) => a + (item.product.price * item.quantity), 0)
+}
+
+function hasProduct(product) {
+  return items.filter(item => item.product === product).length > 0
+}
+
+function setQuantity({ product, quantity }) {
+  items = items.map(item => {
+    if (item.product === product) {
+      item.quantity += quantity
+    }
+    return item
+  })
+  handleChange(items)
+  return cart
+}
+
+function getProductsCount() {
+  return items.reduce((a, item) => a + item.quantity, 0)
 }
 
 function remove(itemToRemove) {

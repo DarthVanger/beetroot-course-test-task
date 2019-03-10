@@ -30,8 +30,20 @@ filterStore.onChange(() => {
 })
 
 function initAddToCartBtn(product) {
+  product.component.qty.setAttribute('min', '1')
+
   product.component.addToCartBtn.addEventListener('click', () => {
-    cartStore.add(product)
+    const qtyInputValue = product.component.qty.value
+    const quantity = qtyInputValue ?
+      parseInt(qtyInputValue) :
+      1
+
+    if (isNaN(quantity) || quantity < 1) {
+      alert(`Specified product quantity "${qtyInputValue}" is invalid`)
+    } else {
+      cartStore.add({ product, quantity })
+      product.component.qty.value = ''
+    }
   })
 }
 
