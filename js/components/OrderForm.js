@@ -26,13 +26,15 @@ class OrderForm extends HTMLElement {
 
   onSubmit(event) {
     event.preventDefault()
+
     const { errorMessages, isValid } = this.validate()
     if (isValid) {
       this.dispatchEvent(new CustomEvent('orderPlacementSuccess'))
     } else {
       alert(`The form is invalid:\n${errorMessages.join('\n')}`) 
-      return false
     }
+
+    return false
   }
 
   validate() {
