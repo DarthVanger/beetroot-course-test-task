@@ -23,7 +23,7 @@ function getItems() {
 }
 
 function add(product) {
-  console.debug('Adding product: ', product);
+  console.debug('Adding product to cart: ', product);
   items.push(product)
   handleChange(items)
   return cart
