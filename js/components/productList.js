@@ -2,7 +2,11 @@ import cartStore from '../cartStore.js'
 import filterStore from '../filterStore.js'
 import categories, { getRandomCategory } from './categories.js'
 
+const productsListContainer = document.querySelector('.products-box')
 const productsNodeList = document.querySelectorAll('.product-box__item')
+
+const noProductsFoundElement = document.createElement('div')
+noProductsFoundElement.innerHTML = 'No products to show'
 
 const productComponents = [...productsNodeList].map(node => ({
   container: node,
@@ -44,6 +48,14 @@ function setState({ productsToShow }) {
       product.component.container.style.display = 'none'
     }
   })
+
+  const isNoProductsFoundMessageShown = productsListContainer.contains(noProductsFoundElement)
+
+  if (productsToShow.length === 0 && !isNoProductsFoundMessageShown) {
+    productsListContainer.appendChild(noProductsFoundElement)
+  } else if (isNoProductsFoundMessageShown) {
+    noProductsFoundElement.remove()
+  }
 }
 
 export default products
