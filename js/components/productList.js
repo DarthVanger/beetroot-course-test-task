@@ -1,6 +1,6 @@
 import cartStore from '../cartStore.js'
 import filterStore from '../filterStore.js'
-import { getRandomCategory } from '../productCategories.js'
+import productCategories from '../productCategories.js'
 import noProductsFoundMessage from './noProductsFoundMessage.js'
 
 const productsNodeList = document.querySelectorAll('.product-box__item')
@@ -13,11 +13,11 @@ const productComponents = [...productsNodeList].map(node => ({
   addToCartBtn: node.querySelector('.product-box__btn'),
 }))
 
-const products = productComponents.map(component => ({
+const products = productComponents.map((component, index) => ({
   component,
   title: component.title.innerText,
   price: parseInt(component.price.innerText),
-  category: getRandomCategory().name,
+  category: productCategories[index % 3],
 }))
 
 products.forEach(initAddToCartBtn)
@@ -50,7 +50,7 @@ function initAddToCartBtn(product) {
 function renderProductCategory(product) {
   const categoryElement = document.createElement('div')
   categoryElement.style.color = 'green'
-  categoryElement.innerHTML = `Category:  ${product.category}`
+  categoryElement.innerHTML = `Category:  ${product.category.name}`
   product.component.container.appendChild(categoryElement)
 }
 

@@ -1,4 +1,4 @@
-const CATEGORY_FILTER_DISABLED_VALUE = 'Все'
+const CATEGORY_FILTER_DISABLED_VALUE = { id: '0', name: 'Все' }
 const PRICE_FILTER_DISABLED_VALUE = 0
 
 let state = {
@@ -28,10 +28,10 @@ function applyFilter(products) {
 }
 
 function categoryFilter(product) {
-  if (state.category === CATEGORY_FILTER_DISABLED_VALUE) {
+  if (state.category.name === CATEGORY_FILTER_DISABLED_VALUE.name) {
     return true
   }
-  return product.category === state.category
+  return product.category.name === state.category.name
 }
 
 function priceFilter(product) {

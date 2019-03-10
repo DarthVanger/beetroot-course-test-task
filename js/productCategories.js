@@ -5,14 +5,6 @@ const optionNodeList = select.querySelectorAll('option')
 
 const categories = [...optionNodeList]
   .map(node => ({ id: node.value, name: node.innerText }))
-  .filter(option => option.name !== CATEGORY_FILTER_DISABLED_VALUE)
+  .filter(option => option.name !== CATEGORY_FILTER_DISABLED_VALUE.name)
 
-function getRandomCategory() {
-  const randomIndex = ( Math.floor(Math.random() * 10) ) % categories.length
-  return categories[randomIndex]
-}
-
-export {
-  getRandomCategory,
-}
 export default categories

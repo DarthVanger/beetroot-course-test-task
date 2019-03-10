@@ -9,7 +9,7 @@ categorySelect.addEventListener('change', () => {
     .querySelector(`option[value="${selectedOptionValue}"`).innerText
 
   filterStore.set({
-    category: selectedOptionName,
+    category: { id: selectedOptionValue, name: selectedOptionName }
   })
 
   console.debug('Filter changed: category filter name: ', selectedOptionName)
